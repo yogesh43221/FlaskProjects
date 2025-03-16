@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/lib/languages/python.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/a11y-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 style="color:white">Chat Bot</h1>
+        <div class="chat-box mt-3">
+        </div>
+        <div class="form-group mt-3">
+            <textarea class="form-control" rows="3" placeholder="Type your message here" id="message-input"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" id="send-btn">Send</button>
+
+        <div class="mt-3">
+            <p style="color:white">To receive your chat history, please enter your email address below and click "Email History".</p>
+            <input type="email" class="form-control" id="email-input" placeholder="Enter email address">
+            <button type="button" class="btn btn-success mt-2" id="email-btn">Email History</button>
+        </div>
+    </div>
+    <script>
+        setInterval(highlightAll, 1000);
+
+        function highlightAll() {
+            document.querySelectorAll("pre code").forEach(block => {
+                hljs.highlightBlock(block);
+            });
+        }
+
+        const chatBox = document.querySelector(".chat-box");
+        const messageInput = document.querySelector("#message-input");
+        const sendBtn = document.querySelector("#send-btn");
+        const emailInput = document.querySelector("#email-input"); // New email input
+        const emailBtn = document.querySelector("#email-btn"); // New email button
+
+        function addMessage(message, isUserMessage) {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("mt-3", "p-3", "rounded");
+
+            if (isUserMessage) {
+                messageDiv.classList.add("user-message");
+            } else {
+                messageDiv.classList.add("bot-message");
+            }
+
+            messageDiv.innerHTML = `
+                <img src="{{ url_for('static', filename='images/user.png') }}" class="user-icon"><p>${message}</p>
+            `;
+
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function formatResponse(content) {
+            // Basic list detection (adjust as needed)
+            if (content.includes("* ")) {
+                const items = content.split("* ").filter(item => item.trim() !== "");
+                if (items.length > 1) {
+                    let listHTML = "<ul>";
+                    items.forEach(item => {
+                        listHTML += `<li>${item.trim()}</li>`;
+                    });
+                    listHTML += "</ul>";
+                    return listHTML;
+                }
+            }
+            // Code block handling
+            const hasCodeBlock = content.includes("```");
+            if (hasCodeBlock) {
+                const codeContent = content.replace(/```([\s\S]+?)```/g, '</p><pre><code>$1</code></pre><p>');
+                return `<p>${codeContent}</p>`;
+            }
+
+            return `<p>${content}</p>`; // Default to paragraph
+        }
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+
+            if (message !== "") {
+                addMessage(message, true);
+
+                fetch("/api", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        messageInput.value = "";
+                        const messageDiv = document.createElement("div");
+                        messageDiv.classList.add("mt-3", "p-3", "rounded");
+                        messageDiv.classList.add("bot-message");
+
+                        const formattedContent = formatResponse(data.content);
+                        messageDiv.innerHTML = `<img src="{{ url_for('static', filename='images/gpt.jpg') }}" class="bot-icon">${formattedContent}`;
+
+                        chatBox.appendChild(messageDiv);
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    })
+                    .catch(error => console.error(error));
+            }
+        }
+
+        sendBtn.addEventListener("click", sendMessage);
+        messageInput.addEventListener("keydown", event => {
+            if (event.keyCode === 13 && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Email functionality
+        emailBtn.addEventListener("click", () => {
+            const email = emailInput.value.trim();
+            if (email !== "") {
+                fetch("/send_email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message || data.error); // Show success or error message
+                    })
+                    .catch(error => console.error(error));
+            } else {
+                alert("Please enter an email address.");
+            }
+        });
+    </script>
+</body>
+
+</html>
