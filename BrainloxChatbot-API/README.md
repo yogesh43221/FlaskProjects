@@ -1,8 +1,8 @@
-LangChain Gemini Chatbot
+## LangChain Gemini Chatbot
 
-This repository contains a Flask-based chatbot project using LangChain and Google's Gemini model.
+- **This repository contains a Flask-based chatbot project using LangChain and Google's Gemini model.**
 
-📂 Project Structure
+# 📂 Project Structure
 
 brainloxchatbot-api/
 ├── app.py
@@ -19,9 +19,9 @@ brainloxchatbot-api/
     └── index.faiss
     └── index.pkl
 
-📄 Prerequisites
+# 📄 Prerequisites
 
-To run this project locally, you need:
+**To run this project locally, you need:**
 
 * Python 3.6 or higher installed.
 * Pip installed (Python package installer).
@@ -39,21 +39,21 @@ To run this project locally, you need:
     unstructured
     ```
 
-🛠️ Setup Instructions
+# 🛠️ Setup Instructions
 
-1.  Clone this repository:
+1.  **Clone this repository:**
 
     ```bash
     git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
     ```
 
-2.  Navigate to the project directory:
+2.  **Navigate to the project directory:**
 
     ```bash
     cd your-repo-name/brainloxchatbot-api
     ```
 
-3.  Create a `.env` file in the `brainloxchatbot-api` directory and add your API keys and email credentials:
+3.  **Create a `.env` file in the `brainloxchatbot-api` directory and add your API keys and email credentials:**
 
     ```
     GOOGLE_API_KEY=your_google_api_key
@@ -64,24 +64,24 @@ To run this project locally, you need:
     * Replace the placeholder values with your actual credentials.
     * If using Gmail, generate an app password for security.
 
-4.  Install the required Python packages:
+4.  **Install the required Python packages:**
 
     ```bash
     pip install -r requirements.txt
     ```
 
-5.  Run the Flask application:
+5.  **Run the Flask application:**
 
     ```bash
     python app.py
     ```
 
-6.  Open your web browser and go to `http://127.0.0.1:5000` to interact with the chatbot.
+6.  **Open your web browser and go to `http://127.0.0.1:5000` to interact with the chatbot.**
 
-🤝 Contributions
+# 🤝 Contributions
 
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/your-username/your-repo-name/issues) for open issues or to suggest improvements.
 
-📄 License
+# 📄 License
 
 This repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. (If you don't have a license file yet, create one and add it)
