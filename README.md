@@ -5,10 +5,13 @@ This repository contains a collection of Flask-based projects.
 - **Brainlox Chabot API using Langchain & Goggle Gemini API**
 
 ## 📄 Prerequisites  
-To run these projects locally, you need:  
-- Java Development Kit (JDK) installed (version 8 or higher recommended).  
-- IDE like Eclipse, IntelliJ IDEA, or NetBeans for running and editing the code.  
-- Basic understanding of Java programming.  
+To run this project locally, you need:
+
+* Python 3.6 or higher installed.
+* Pip installed (Python package installer).
+* A Google Cloud Platform project with the Generative AI API enabled and a valid API key.
+* A Gmail account (or other SMTP service) for sending email notifications.
+* Required Python packages (install using `pip install -r requirements.txt`).  
 
 ## 🛠️ Setup Instructions  
 1. **Clone this repository:**  
