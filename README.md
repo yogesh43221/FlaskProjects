@@ -1,2 +1,2 @@
-# FlaskProjects-BrainloxChatbotAPI
+# FlaskProjects
 Chatbot api for brainlox courses
