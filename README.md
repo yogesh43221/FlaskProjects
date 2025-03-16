@@ -21,7 +21,7 @@ git clone https://github.com/piyush-gambhir/java-projects.git
 
 # 🤝 Contributions  
 Contributions, issues, and feature requests are welcome!  
-Feel free to check the [issues page](https://github.com/piyush-gambhir/java-projects/issues) for open issues or to suggest improvements.  
+Feel free to check the [issues page](https://github.com/yogesh43221/FlaskProjects/issues) for open issues or to suggest improvements.  
 
 ## How to Contribute  
 1. **Fork the repository**  
