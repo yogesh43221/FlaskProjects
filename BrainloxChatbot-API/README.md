@@ -44,16 +44,16 @@ brainloxchatbot-api/
 1.  **Clone this repository:**
 
     ```bash
-    git clone [https://github.com/yogesh43221/FlaskProjects/BrainloxChatbot-API.git](https://github.com/yogesh43221/FlaskProjects/BrainloxChatbot-API.git)
+    git clone [https://github.com/yogesh43221/FlaskProjects.git](https://github.com/yogesh43221/FlaskProjects.git)
     ```
 
 2.  **Navigate to the project directory:**
 
     ```bash
-    cd your-repo-name/brainloxchatbot-api
+    cd FlaskProjects/BrainloxChatbot-API
     ```
 
-3.  **Create a `.env` file in the `brainloxchatbot-api` directory and add your API keys and email credentials:**
+3.  **Create a `.env` file in the `BrainloxChatbot-API` directory and add your API keys and email credentials:**
 
     ```
     GOOGLE_API_KEY=your_google_api_key
