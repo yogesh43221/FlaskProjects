@@ -1,8 +1,8 @@
-## LangChain Gemini Chatbot
+# LangChain Gemini Chatbot
 
 - **This repository contains a Flask-based chatbot project using LangChain and Google's Gemini model.**
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 brainloxchatbot-api/
 ├── app.py
@@ -19,7 +19,7 @@ brainloxchatbot-api/
     └── index.faiss
     └── index.pkl
 
-# 📄 Prerequisites
+## 📄 Prerequisites
 
 **To run this project locally, you need:**
 
@@ -39,12 +39,12 @@ brainloxchatbot-api/
     unstructured
     ```
 
-# 🛠️ Setup Instructions
+## 🛠️ Setup Instructions
 
 1.  **Clone this repository:**
 
     ```bash
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    git clone [https://github.com/yogesh43221/FlaskProjects/tree/main/BrainloxChatbot-API.git](https://github.com/yogesh43221/FlaskProjects/tree/main/BrainloxChatbot-API.git)
     ```
 
 2.  **Navigate to the project directory:**
@@ -78,10 +78,10 @@ brainloxchatbot-api/
 
 6.  **Open your web browser and go to `http://127.0.0.1:5000` to interact with the chatbot.**
 
-# 🤝 Contributions
+## 🤝 Contributions
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/your-username/your-repo-name/issues) for open issues or to suggest improvements.
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yogesh43221/FlaskProjects/issues) for open issues or to suggest improvements.
 
-# 📄 License
+## 📄 License
 
 This repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. (If you don't have a license file yet, create one and add it)
