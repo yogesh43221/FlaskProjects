@@ -13,7 +13,7 @@ To run these projects locally, you need:
 ## 🛠️ Setup Instructions  
 1. **Clone this repository:**  
 ```bash
-git clone https://github.com/piyush-gambhir/java-projects.git
+git clone https://github.com/yogesh43221/FlaskProjects
 ```
 2. **Open any of the projects in your preferred IDE.**
 3. **Compile and run the Java files as per the project's instructions.**
