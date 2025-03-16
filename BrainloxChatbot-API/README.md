@@ -44,7 +44,7 @@ brainloxchatbot-api/
 1.  **Clone this repository:**
 
     ```bash
-    git clone [https://github.com/yogesh43221/FlaskProjects.git](https://github.com/yogesh43221/FlaskProjects.git)
+    git clone https://github.com/yogesh43221/FlaskProjects/tree/main/BrainloxChatbot-API
     ```
 
 2.  **Navigate to the project directory:**
