@@ -4,11 +4,20 @@ This repository contains a Flask-based chatbot project using LangChain and Googl
 
 📂 Project Structure
 
-flaskproject/
+brainloxchatbot-api/
 ├── app.py
-├── index.html
-├── style.css
-└── .gitignore
+├── requirements.txt
+├── .gitignore
+├── static/
+│   ├── images/
+│   │   └── user.png
+│   │   └── gpt.jpg
+│   └── style.css
+├── templates/
+│   └── index.html
+└── faiss_index/
+    └── index.faiss
+    └── index.pkl
 
 📄 Prerequisites
 
@@ -23,7 +32,7 @@ To run this project locally, you need:
     ```
     Flask
     langchain-google-genai
-    langchain
+    langchain-community
     faiss-cpu
     reportlab
     python-dotenv
@@ -41,10 +50,10 @@ To run this project locally, you need:
 2.  Navigate to the project directory:
 
     ```bash
-    cd your-repo-name/flaskproject
+    cd your-repo-name/brainloxchatbot-api
     ```
 
-3.  Create a `.env` file in the `flaskproject` directory and add your API keys and email credentials:
+3.  Create a `.env` file in the `brainloxchatbot-api` directory and add your API keys and email credentials:
 
     ```
     GOOGLE_API_KEY=your_google_api_key
