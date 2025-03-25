@@ -1,13 +1,20 @@
-# LangChain Gemini Chatbot
+# 🌐 Live App
+**Access the chatbot here:** [Brainlox Chatbot API](https://brainloxchatbot-api-274691259241.asia-south1.run.app)
 
-- **This repository contains a Flask-based chatbot project using LangChain and Google's Gemini model.**
+---
+
+# LangChain Gemini Chatbot 🚀
+
+- **This repository contains a Flask-based chatbot using LangChain and Google's Gemini model, deployed on Google Cloud Run.**
 
 ## 📂 Project Structure
-
+```
 brainloxchatbot-api/
 ├── app.py
 ├── requirements.txt
+├── Dockerfile
 ├── .gitignore
+├── .dockerignore
 ├── static/
 │   ├── images/
 │   │   └── user.png
@@ -18,70 +25,105 @@ brainloxchatbot-api/
 └── faiss_index/
     └── index.faiss
     └── index.pkl
+```
+
+---
 
 ## 📄 Prerequisites
-
-**To run this project locally, you need:**
-
-* Python 3.6 or higher installed.
+**To run this project, you need:**
+* Python 3.9 or higher installed.
 * Pip installed (Python package installer).
-* A Google Cloud Platform project with the Generative AI API enabled and a valid API key.
-* A Gmail account (or other SMTP service) for sending email notifications.
-* Required Python packages (install using `pip install -r requirements.txt`). Create a `requirements.txt` file with the following content:
+* A Google Cloud Project with the **Generative AI API enabled** and a valid API key.
+* A Gmail account (or other SMTP service) for sending emails.
+* Required Python packages (install using `pip install -r requirements.txt`).
 
-    ```
-    Flask
-    langchain-google-genai
-    langchain-community
-    faiss-cpu
-    reportlab
-    python-dotenv
-    unstructured
-    ```
+---
 
 ## 🛠️ Setup Instructions
 
-1.  **Clone this repository:**
+### **Run Locally**
 
-    ```bash
-    git clone https://github.com/yogesh43221/FlaskProjects/tree/main/BrainloxChatbot-API
-    ```
+1️⃣ **Clone this repository:**
+```bash
+git clone https://github.com/yogesh43221/FlaskProjects.git
+```
 
-2.  **Navigate to the project directory:**
+2️⃣ **Navigate to the project directory:**
+```bash
+cd FlaskProjects/BrainloxChatbot-API
+```
 
-    ```bash
-    cd FlaskProjects/BrainloxChatbot-API
-    ```
+3️⃣ **Create a `.env` file** and add your API keys and email credentials:
+```env
+GOOGLE_API_KEY=your_google_api_key
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASSWORD=your_email_app_password
+```
+Replace placeholders with your actual credentials.
 
-3.  **Create a `.env` file in the `BrainloxChatbot-API` directory and add your API keys and email credentials:**
+4️⃣ **Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
 
-    ```
-    GOOGLE_API_KEY=your_google_api_key
-    EMAIL_USER=your_email@gmail.com
-    EMAIL_PASSWORD=your_email_app_password
-    ```
+5️⃣ **Run the Flask app:**
+```bash
+python app.py
+```
 
-    * Replace the placeholder values with your actual credentials.
-    * If using Gmail, generate an app password for security.
+6️⃣ **Access the chatbot** at `http://127.0.0.1:5000` in your browser.
 
-4.  **Install the required Python packages:**
+---
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+## 🚀 Deploy to Google Cloud Run
 
-5.  **Run the Flask application:**
+### **1️⃣ Enable Google Cloud APIs** (if not already enabled)
+```bash
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com
+```
 
-    ```bash
-    python app.py
-    ```
+### **2️⃣ Set Environment Variables in Cloud Run**
+```bash
+gcloud run services update brainloxchatbot-api --region asia-south1 \
+  --set-env-vars GOOGLE_API_KEY="your_google_api_key",EMAIL_USER="your_email@gmail.com",EMAIL_PASSWORD="your_app_password"
+```
 
-6.  **Open your web browser and go to `http://127.0.0.1:5000` to interact with the chatbot.**
+### **3️⃣ Build and Push Docker Image**
+```bash
+gcloud builds submit --tag gcr.io/your-project-id/brainloxchatbot-api
+```
+
+### **4️⃣ Deploy to Cloud Run**
+```bash
+gcloud run deploy brainloxchatbot-api --image gcr.io/your-project-id/brainloxchatbot-api --region asia-south1 --platform managed --allow-unauthenticated
+```
+
+### **5️⃣ Access the Live App**
+Once deployed, get the service URL:
+```bash
+gcloud run services describe brainloxchatbot-api --region asia-south1 --format 'value(status.url)'
+```
+
+---
+
+## 🔍 Logs and Debugging
+To check logs and errors, run:
+```bash
+gcloud run services logs read brainloxchatbot-api --region asia-south1 --limit=50
+```
+
+To restart Cloud Run service:
+```bash
+gcloud run services update-traffic brainloxchatbot-api --to-latest
+```
+
+---
 
 ## 🤝 Contributions
-
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yogesh43221/FlaskProjects/issues) for open issues or to suggest improvements.
 
-## 📄 License
+---
 
-This repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. (If you don't have a license file yet, create one and add it)
+## 📄 License
+This repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
